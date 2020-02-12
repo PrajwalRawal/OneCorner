@@ -1,8 +1,7 @@
 import React from "react";
-import { Text, View, StatusBar, SafeAreaView } from "react-native";
+import { StatusBar, SafeAreaView, ScrollView } from "react-native";
 import SearchBar from "../partials/SearchBar";
-import { Container, Header, Icon } from "native-base";
-import colors from "../../styles/colors";
+import { Container, Header, Content } from "native-base";
 
 export default ({ navigation, children, noHeader }) => {
   return (
