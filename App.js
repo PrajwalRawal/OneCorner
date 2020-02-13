@@ -1,215 +1,216 @@
-import * as React from "react";
-import { Button, View, Text, Image } from "react-native";
+import * as React from 'react';
+import {View, Text, Image, Platform, StatusBar} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
   DrawerItemList,
-  DrawerItem
-} from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
-import Home from "./src/views/screens/Home";
-import Notifications from "./src/views/screens/Notifications";
+} from '@react-navigation/drawer';
+import {NavigationContainer} from '@react-navigation/native';
+import {createAppContainer} from 'react-navigation';
+import {createStackNavigator} from 'react-navigation-stack';
+import Icon from 'react-native-vector-icons/AntDesign';
 
-import { createAppContainer } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack";
-import Icon from "react-native-vector-icons/AntDesign";
-import colors from "./src/styles/colors";
+//Screens
+import Home from './src/views/screens/Home';
+import Notifications from './src/views/screens/Notifications';
+import Search from './src/views/screens/Search';
 
 export const Drawer = createDrawerNavigator();
 let routes = [
   {
-    name: "Home",
+    name: 'Home',
     component: Home,
     options: {
       drawerIcon: () => (
-        <Icon name="home" size={20} style={{ width: 20 }} color="#555" />
-      )
-    }
+        <Icon name="home" size={20} style={{width: 20}} color="#555" />
+      ),
+    },
   },
   {
-    name: "Profile",
+    name: 'Profile',
     component: Notifications,
     options: {
       drawerIcon: () => (
-        <Icon name="user" size={25} style={{ width: 20 }} color="#555" />
-      )
-    }
+        <Icon name="user" size={25} style={{width: 20}} color="#555" />
+      ),
+    },
   },
   {
-    name: "Reservations",
+    name: 'Reservations',
     component: Notifications,
     options: {
       drawerIcon: () => (
-        <Icon name="carryout" size={20} style={{ width: 20 }} color="#555" />
-      )
-    }
+        <Icon name="carryout" size={20} style={{width: 20}} color="#555" />
+      ),
+    },
   },
   {
-    name: "Reviews",
+    name: 'Reviews',
     component: Notifications,
     options: {
       drawerIcon: () => (
-        <Icon name="form" size={20} style={{ width: 20 }} color="#555" />
-      )
-    }
+        <Icon name="form" size={20} style={{width: 20}} color="#555" />
+      ),
+    },
   },
   {
-    name: "Loyalty Points",
+    name: 'Loyalty Points',
     component: Notifications,
     options: {
       drawerIcon: () => (
-        <Icon name="staro" size={20} style={{ width: 20 }} color="#555" />
-      )
-    }
+        <Icon name="staro" size={20} style={{width: 20}} color="#555" />
+      ),
+    },
   },
   {
-    name: "About",
+    name: 'About',
     component: Notifications,
     options: {
       drawerIcon: () => (
-        <Icon name="info" size={20} style={{ width: 20 }} color="#555" />
-      )
-    }
+        <Icon name="info" size={20} style={{width: 20}} color="#555" />
+      ),
+    },
   },
   {
-    name: "FAQ",
+    name: 'FAQ',
     component: Notifications,
     options: {
       drawerIcon: () => (
         <Icon
           name="questioncircleo"
           size={20}
-          style={{ width: 20 }}
+          style={{width: 20}}
           color="#555"
         />
-      )
-    }
+      ),
+    },
   },
   {
-    name: "Are You a Restaurant ?",
+    name: 'Are You a Restaurant ?',
     component: Notifications,
     options: {
       drawerIcon: () => (
-        <Icon name="isv" size={20} style={{ width: 20 }} color="#555" />
-      )
-    }
-  }
+        <Icon name="isv" size={20} style={{width: 20}} color="#555" />
+      ),
+    },
+  },
+  {
+    name: 'Search',
+    component: Search,
+    options: {
+      drawerIcon: () => (
+        <Icon name="isv" size={20} style={{width: 20}} color="#555" />
+      ),
+    },
+  },
 ];
 
-function CustomDrawerContent({ ...rest }) {
+function CustomDrawerContent({...rest}) {
   return (
     <DrawerContentScrollView {...rest}>
       <View
         style={{
           margin: 20,
-          flexDirection: "row",
-          justifyContent: "flex-start"
-        }}
-      >
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+        }}>
         <Image
           source={{
             uri:
-              "https://vignette.wikia.nocookie.net/jamesbond/images/c/ca/Vesper_Lynd_%28Eva_Green%29_-_Profile.png"
+              'https://vignette.wikia.nocookie.net/jamesbond/images/c/ca/Vesper_Lynd_%28Eva_Green%29_-_Profile.png',
           }}
           style={{
             height: 80,
             width: 80,
             borderRadius: 50,
-            resizeMode: "cover"
+            resizeMode: 'cover',
           }}
         />
-        <View style={{ marginLeft: 15, alignItems: "center" }}>
-          <Text style={{ color: "#555", fontSize: 16 }}>Vesper Lynd</Text>
+        <View style={{marginLeft: 15, alignItems: 'center'}}>
+          <Text style={{color: '#555', fontSize: 16}}>Vesper Lynd</Text>
           <View
             style={{
-              alignItems: "center",
+              alignItems: 'center',
               marginTop: 5,
               borderWidth: 1,
-              borderColor: "#31d0cf",
+              borderColor: '#31d0cf',
               borderRadius: 5,
-              padding: 5
-            }}
-          >
-            <Text style={{ color: "#555" }}>400 Points</Text>
+              padding: 5,
+            }}>
+            <Text style={{color: '#555'}}>400 Points</Text>
           </View>
         </View>
       </View>
       <View
-        style={{ borderWidth: 0.5, borderColor: "#eaeaea", marginBottom: 5 }}
+        style={{borderWidth: 0.5, borderColor: '#eaeaea', marginBottom: 5}}
       />
 
       <DrawerItemList {...rest} />
 
-      <View style={{ borderWidth: 0.5, borderColor: "#eaeaea" }} />
+      <View style={{borderWidth: 0.5, borderColor: '#eaeaea'}} />
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "center",
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
           marginLeft: 20,
           paddingTop: 10,
-          paddingBottom: 10
-        }}
-      >
+          paddingBottom: 10,
+        }}>
         <Icon name="setting" size={25} color="#555" />
         <Text
           style={{
-            color: "#555",
+            color: '#555',
             fontSize: 14,
-            fontWeight: "500",
-            marginLeft: 20
-          }}
-        >
+            fontWeight: '500',
+            marginLeft: 20,
+          }}>
           Settings
         </Text>
       </View>
-      <View style={{ borderWidth: 0.5, borderColor: "#eaeaea" }} />
+      <View style={{borderWidth: 0.5, borderColor: '#eaeaea'}} />
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "center",
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
           marginLeft: 20,
           paddingTop: 10,
-          paddingBottom: 10
-        }}
-      >
+          paddingBottom: 10,
+        }}>
         <Icon name="customerservice" size={25} color="#555" />
         <Text
           style={{
-            color: "#555",
+            color: '#555',
             fontSize: 14,
-            fontWeight: "500",
-            marginLeft: 20
-          }}
-        >
+            fontWeight: '500',
+            marginLeft: 20,
+          }}>
           Contact Us
         </Text>
       </View>
-      <View style={{ borderWidth: 0.5, borderColor: "#eaeaea" }} />
+      <View style={{borderWidth: 0.5, borderColor: '#eaeaea'}} />
       <View
         style={{
-          flexDirection: "row",
-          justifyContent: "flex-start",
-          alignItems: "center",
+          flexDirection: 'row',
+          justifyContent: 'flex-start',
+          alignItems: 'center',
           marginLeft: 20,
           paddingTop: 10,
-          paddingBottom: 10
-        }}
-      >
+          paddingBottom: 10,
+        }}>
         <Icon name="poweroff" size={25} color="#555" />
         <Text
           style={{
-            color: "#555",
+            color: '#555',
             fontSize: 14,
-            fontWeight: "500",
-            marginLeft: 20
-          }}
-        >
+            fontWeight: '500',
+            marginLeft: 20,
+          }}>
           Log Out
         </Text>
       </View>
-      <View style={{ borderWidth: 0.5, borderColor: "#eaeaea" }} />
+      <View style={{borderWidth: 0.5, borderColor: '#eaeaea'}} />
     </DrawerContentScrollView>
   );
 }
@@ -220,20 +221,21 @@ function App() {
       <Drawer.Navigator
         initialRouteName="Home"
         drawerStyle={{
-          backgroundColor: "white",
-          borderRadius: 10
+          backgroundColor: 'white',
+          borderTopRightRadius: 10,
+          borderBottomRightRadius: 10,
+          marginTop: StatusBar.currentHeight,
         }}
         drawerContentOptions={{
           marginTop: 10,
           labelStyle: {
-            color: "#555",
+            color: '#555',
             fontSize: 14,
-            marginLeft: -10
+            marginLeft: -10,
           },
-          activeBackgroundColor: "#dff5f4"
+          activeBackgroundColor: '#dff5f4',
         }}
-        drawerContent={props => CustomDrawerContent(props)}
-      >
+        drawerContent={props => CustomDrawerContent(props)}>
         {routes.map((route, i) => (
           <Drawer.Screen key={i} {...route} />
         ))}
@@ -245,14 +247,14 @@ function App() {
 export default createAppContainer(
   createStackNavigator(
     {
-      App: App
+      App,
     },
     {
-      initialRouteName: "App",
-      headerMode: "none",
+      initialRouteName: 'App',
+      headerMode: 'none',
       navigationOptions: {
-        headerVisible: false
-      }
-    }
-  )
+        headerVisible: false,
+      },
+    },
+  ),
 );
