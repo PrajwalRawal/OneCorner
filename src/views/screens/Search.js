@@ -10,7 +10,8 @@ import {
   SectionList,
   Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/AntDesign';
+import IconA from 'react-native-vector-icons/AntDesign';
+import {Button, Icon} from 'native-base';
 
 const CuisineSections = [
   {
@@ -98,18 +99,13 @@ export default ({navigation}) => {
                 alignItems: 'center',
                 marginBottom: 10,
               }}>
-              <Icon
-                name="arrowleft"
-                size={30}
-                color="white"
-                onPress={() => navigation.goBack()}
-              />
+              <Button transparent iconRight onPress={() => navigation.goBack()}>
+                <Icon name="arrow-back" style={{color: 'white'}} />
+              </Button>
               <Text
                 style={{
                   fontSize: 20,
-                  marginLeft: 10,
                   color: 'white',
-                  marginBottom: 5,
                 }}>
                 Search
               </Text>
@@ -220,7 +216,7 @@ export default ({navigation}) => {
                   justifyContent: 'flex-start',
                   flexDirection: 'row',
                 }}>
-                <Icon name="isv" size={25} color="#31d0cf" />
+                <IconA name="isv" size={25} color="#31d0cf" />
                 <Text
                   style={{
                     fontSize: 16,
@@ -295,7 +291,7 @@ export default ({navigation}) => {
                   justifyContent: 'flex-start',
                   flexDirection: 'row',
                 }}>
-                <Icon name="find" size={25} color="#31d0cf" />
+                <IconA name="find" size={25} color="#31d0cf" />
                 <Text
                   style={{
                     fontSize: 14,
@@ -329,7 +325,7 @@ export default ({navigation}) => {
                           flexDirection: 'row',
                         }}
                         onPress={() => ''}>
-                        <Icon name="enviromento" size={30} color="#555" />
+                        <IconA name="enviromento" size={30} color="#555" />
                         <Text
                           style={{
                             marginLeft: 10,
