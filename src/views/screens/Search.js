@@ -9,7 +9,6 @@ import {
   ScrollView,
   SectionList,
   Image,
-  Dimensions,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
@@ -73,6 +72,8 @@ const LocationSections = [
 ];
 
 export default ({navigation}) => {
+  const [text, setText] = useState('London');
+
   const [showCuisine, setShowCuisine] = useState(true);
   const [showLocation, setShowLocation] = useState(false);
 
@@ -87,92 +88,130 @@ export default ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: 'white'}}>
+    <SafeAreaView style={{backgroundColor: '#31d0cf'}}>
       <View style={styles.page}>
-        <View
-          style={{
-            marginTop: 30,
-            marginLeft: 20,
-            marginRight: 20,
-          }}>
-          <View
-            style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-            }}>
-            <Icon
-              name="arrowleft"
-              size={30}
-              style={{marginBottom: 10, marginRight: 10}}
-              color="#555"
-              onPress={() => navigation.goBack()}
-            />
+        <View style={{backgroundColor: '#31d0cf'}}>
+          <View style={{marginLeft: 20, marginRight: 20}}>
             <View
               style={{
-                flex: 1,
                 flexDirection: 'row',
-                height: 50,
-                borderRadius: 10,
+                alignItems: 'center',
+                marginBottom: 10,
+              }}>
+              <Icon
+                name="arrowleft"
+                size={30}
+                color="white"
+                onPress={() => navigation.goBack()}
+              />
+              <Text
+                style={{
+                  fontSize: 20,
+                  marginLeft: 10,
+                  color: 'white',
+                  marginBottom: 5,
+                }}>
+                Search
+              </Text>
+            </View>
+            <View
+              style={{
+                height: 60,
+                borderRadius: 5,
                 borderWidth: 1,
                 borderColor: '#cccecf',
-                justifyContent: 'flex-start',
+                justifyContent: 'space-between',
                 alignItems: 'center',
                 paddingLeft: 10,
+                paddingTop: 5,
                 marginBottom: 15,
+                backgroundColor: 'white',
+                flexDirection: 'row',
               }}>
-              <TouchableOpacity activeOpacity={0.9}>
-                <Icon name="search1" size={25} color="#555" />
-              </TouchableOpacity>
-              <TextInput
-                onFocus={() => handleCuisine()}
-                placeholder="Search for a restaurant or a cuisine"
-                placeholderTextColor="#bbbcbf"
-                selectionColor="#6373db"
-                style={{
-                  marginLeft: 10,
-                  fontSize: 16,
-                }}
-              />
+              <View>
+                <Text style={{fontSize: 14, color: '#bbbcbf', marginBottom: 5}}>
+                  Where?
+                </Text>
+                <TextInput
+                  onFocus={() => handleLocation()}
+                  onChangeText={data => setText(data)}
+                  value={text}
+                  selectionColor="#6373db"
+                  clearTextOnFocus={true}
+                  style={{
+                    fontSize: 16,
+                    width: 320,
+                    borderBottomWidth: showLocation ? 1 : 0,
+                    borderBottomColor: '#bbbcbf',
+                  }}
+                />
+              </View>
+              {showLocation ? (
+                <Text
+                  style={{
+                    fontSize: 24,
+                    marginRight: 15,
+                    color: '#bbbcbf',
+                    fontWeight: 'bold',
+                  }}>
+                  X
+                </Text>
+              ) : (
+                <></>
+              )}
+            </View>
+            <View
+              style={{
+                height: 60,
+                borderRadius: 5,
+                borderWidth: 1,
+                borderColor: '#cccecf',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                paddingLeft: 10,
+                paddingTop: 5,
+                marginBottom: 15,
+                backgroundColor: 'white',
+                flexDirection: 'row',
+              }}>
+              <View>
+                <Text style={{fontSize: 14, color: '#bbbcbf', marginBottom: 5}}>
+                  What're you looking for?
+                </Text>
+                <TextInput
+                  onFocus={() => handleCuisine()}
+                  autoFocus={true}
+                  selectionColor="#6373db"
+                  style={{
+                    fontSize: 16,
+                    width: 320,
+                    borderBottomWidth: 1,
+                    borderBottomColor: '#bbbcbf',
+                  }}
+                />
+              </View>
+              {showCuisine ? (
+                <Text
+                  style={{
+                    fontSize: 24,
+                    marginRight: 15,
+                    color: '#bbbcbf',
+                    fontWeight: 'bold',
+                  }}>
+                  X
+                </Text>
+              ) : (
+                <></>
+              )}
             </View>
           </View>
+        </View>
+        {showCuisine ? (
           <View
             style={{
-              flexDirection: 'row',
-              marginLeft: 40,
-              height: 50,
-              width: Dimensions.get('screen').width - 80,
-              borderRadius: 10,
-              borderWidth: 1,
-              borderColor: '#cccecf',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              paddingLeft: 10,
-              marginBottom: 15,
+              marginLeft: 20,
+              marginRight: 20,
             }}>
-            <TouchableOpacity activeOpacity={0.9}>
-              <Icon name="enviromento" size={25} color="#555" />
-            </TouchableOpacity>
-            <TextInput
-              onFocus={() => handleLocation()}
-              placeholder="Search by location"
-              placeholderTextColor="#bbbcbf"
-              selectionColor="#6373db"
-              style={{
-                marginLeft: 10,
-                fontSize: 16,
-              }}
-            />
-          </View>
-          <View
-            style={{
-              marginLeft: -20,
-              marginRight: -20,
-              borderWidth: 0.5,
-              borderColor: '#e0dada',
-            }}
-          />
-          {showCuisine ? (
             <ScrollView>
               <View
                 style={{
@@ -238,10 +277,16 @@ export default ({navigation}) => {
                 />
               </View>
             </ScrollView>
-          ) : (
-            <></>
-          )}
-          {showLocation ? (
+          </View>
+        ) : (
+          <></>
+        )}
+        {showLocation ? (
+          <View
+            style={{
+              marginLeft: 20,
+              marginRight: 20,
+            }}>
             <ScrollView>
               <View
                 style={{
@@ -308,10 +353,10 @@ export default ({navigation}) => {
                 />
               </View>
             </ScrollView>
-          ) : (
-            <></>
-          )}
-        </View>
+          </View>
+        ) : (
+          <></>
+        )}
       </View>
     </SafeAreaView>
   );
