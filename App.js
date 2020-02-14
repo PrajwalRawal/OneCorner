@@ -6,16 +6,15 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 //Screens
 import Home from './src/views/screens/Home';
 import Notifications from './src/views/screens/Notifications';
-import Search from './src/views/screens/Search';
+import SearchListings from './src/views/screens/SearchListings';
+import SearchScreen from './src/views/screens/SearchScreen';
 
-export const Drawer = createDrawerNavigator();
 let routes = [
   {
     name: 'Home',
@@ -215,7 +214,18 @@ function CustomDrawerContent({...rest}) {
   );
 }
 
-function App() {
+const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
+
+function Search() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="SearchScreen" component={SearchScreen} />
+      <Stack.Screen name="SearchListings" component={SearchListings} />
+    </Stack.Navigator>
+  );
+}
+export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
@@ -243,18 +253,3 @@ function App() {
     </NavigationContainer>
   );
 }
-
-export default createAppContainer(
-  createStackNavigator(
-    {
-      App,
-    },
-    {
-      initialRouteName: 'App',
-      headerMode: 'none',
-      navigationOptions: {
-        headerVisible: false,
-      },
-    },
-  ),
-);

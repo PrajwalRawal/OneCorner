@@ -13,7 +13,12 @@ export default ({navigation}) => {
         <Icon name="menu" size={25} color="#3a3b3d" />
       </TouchableOpacity>
       <TextInput
-        onFocus={() => navigation.navigate('Search')}
+        clearTextOnFocus={true}
+        onFocus={() =>
+          navigation.navigate('Search', {
+            screen: 'SearchScreen',
+          })
+        }
         placeholder="Type a restaurant or a cuisine"
         placeholderTextColor="#bbbcbf"
         selectionColor="#bbbcbf"

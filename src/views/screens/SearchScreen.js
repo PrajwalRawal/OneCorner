@@ -49,8 +49,8 @@ const LocationSections = [
   {
     data: [
       {
-        city: 'Berlin',
-        country: 'Germany',
+        city: 'Baneshwor',
+        country: 'Nepal',
       },
       {
         city: 'London',
@@ -134,6 +134,11 @@ export default ({navigation}) => {
                   value={text}
                   selectionColor="#6373db"
                   clearTextOnFocus={true}
+                  onSubmitEditing={() =>
+                    navigation.navigate('Search', {
+                      screen: 'SearchListings',
+                    })
+                  }
                   style={{
                     fontSize: 16,
                     width: 320,
@@ -176,6 +181,11 @@ export default ({navigation}) => {
                 </Text>
                 <TextInput
                   onFocus={() => handleCuisine()}
+                  onSubmitEditing={() =>
+                    navigation.navigate('Search', {
+                      screen: 'SearchListings',
+                    })
+                  }
                   autoFocus={true}
                   selectionColor="#6373db"
                   style={{
