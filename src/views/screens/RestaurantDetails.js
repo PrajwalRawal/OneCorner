@@ -11,6 +11,7 @@ import {
 import MainLayout from '../layouts/MainLayout';
 import {SliderBox} from 'react-native-image-slider-box';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Stars from 'react-native-stars';
 import ReadMore from 'react-native-read-more-text';
 import {ProgressBar} from 'react-native-multicolor-progress-bar';
 
@@ -342,7 +343,7 @@ export default ({navigation}) => {
                   padding: 5,
                 }}>
                 <Text style={{fontSize: 60}}>😜</Text>
-                {/* <Stars
+                <Stars
                   default={4.5}
                   count={5}
                   half={true}
@@ -352,7 +353,7 @@ export default ({navigation}) => {
                   halfStar={
                     <Icon name={'star-half'} size={30} color="#31d0cf" />
                   }
-                /> */}
+                />
                 <Text style={{fontSize: 16, color: '#555', fontWeight: 'bold'}}>
                   Excellent
                 </Text>
