@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {View, Text, Image, Platform, StatusBar} from 'react-native';
+import {View, Text, Image, StatusBar} from 'react-native';
 import {
   createDrawerNavigator,
   DrawerContentScrollView,
@@ -10,10 +10,11 @@ import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 //Screens
-import Home from './src/views/screens/Home';
+import HomeScreen from './src/views/screens/HomeScreen';
 import Notifications from './src/views/screens/Notifications';
 import SearchListings from './src/views/screens/SearchListings';
 import SearchScreen from './src/views/screens/SearchScreen';
+import RestaurantDetails from './src/views/screens/RestaurantDetails';
 
 let routes = [
   {
@@ -217,6 +218,15 @@ function CustomDrawerContent({...rest}) {
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
+function Home() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="HomeScreen" component={HomeScreen} />
+      <Stack.Screen name="RestaurantDetails" component={RestaurantDetails} />
+    </Stack.Navigator>
+  );
+}
+
 function Search() {
   return (
     <Stack.Navigator headerMode="none">
@@ -225,11 +235,12 @@ function Search() {
     </Stack.Navigator>
   );
 }
+
 export default function App() {
   return (
     <NavigationContainer>
       <Drawer.Navigator
-        initialRouteName="Home"
+        initialRouteName="HomeScreen"
         drawerStyle={{
           backgroundColor: 'white',
           borderTopRightRadius: 10,

@@ -9,6 +9,7 @@ import {
   ScrollView,
   SectionList,
   Image,
+  StatusBar,
 } from 'react-native';
 import IconA from 'react-native-vector-icons/AntDesign';
 import {Button, Icon} from 'native-base';
@@ -89,7 +90,11 @@ export default ({navigation}) => {
   };
 
   return (
-    <SafeAreaView style={{backgroundColor: '#31d0cf'}}>
+    <SafeAreaView
+      style={{
+        backgroundColor: '#31d0cf',
+        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : -50,
+      }}>
       <View style={styles.page}>
         <View style={{backgroundColor: '#31d0cf'}}>
           <View style={{marginLeft: 20, marginRight: 20}}>

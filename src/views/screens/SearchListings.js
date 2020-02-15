@@ -165,7 +165,12 @@ export default ({navigation}) => {
                   borderBottomWidth: 1,
                   borderRadius: 5,
                 }}
-                activeOpacity={0.9}>
+                activeOpacity={0.9}
+                onPress={() =>
+                  navigation.navigate('Home', {
+                    screen: 'RestaurantDetails',
+                  })
+                }>
                 <Image
                   source={require('../../assets/searchImage.jpg')}
                   style={{
@@ -221,7 +226,7 @@ export default ({navigation}) => {
                       fontWeight: 'bold',
                       color: '#58d69b',
                     }}>
-                    5.2<Text style={{fontSize: 16}}>/6</Text>
+                    4.2<Text style={{fontSize: 16}}>/5</Text>
                   </Text>
                   <Text
                     style={{

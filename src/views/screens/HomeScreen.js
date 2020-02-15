@@ -169,7 +169,12 @@ export default ({navigation}) => {
                 return (
                   <TouchableOpacity
                     activeOpacity={0.9}
-                    style={{marginRight: 10}}>
+                    style={{marginRight: 10}}
+                    onPress={() =>
+                      navigation.navigate('Home', {
+                        screen: 'RestaurantDetails',
+                      })
+                    }>
                     <View style={styles.featuredImageWrapper}>
                       <Image
                         source={require('../../assets/cardImage.jpg')}
@@ -292,6 +297,11 @@ export default ({navigation}) => {
                 return (
                   <TouchableOpacity
                     activeOpacity={0.9}
+                    onPress={() =>
+                      navigation.navigate('Home', {
+                        screen: 'RestaurantDetails',
+                      })
+                    }
                     style={{marginRight: 10}}>
                     <View style={styles.featuredImageWrapper}>
                       <Image
