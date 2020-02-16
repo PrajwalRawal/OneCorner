@@ -1,14 +1,22 @@
 import React from 'react';
-import {StatusBar, SafeAreaView, Platform, Text} from 'react-native';
+import {
+  StatusBar,
+  SafeAreaView,
+  Platform,
+  Text,
+  ScrollView,
+  View,
+  Dimensions,
+} from 'react-native';
 import SearchBar from '../partials/SearchBar';
 import {Header, Button, Icon} from 'native-base';
 
-export default ({navigation, children, title}) => {
+export default ({navigation, children, title, scrollview}) => {
   return (
     <SafeAreaView
       style={{
         marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : -50,
-        marginBottom: Platform.OS === 'ios' ? -50 : 25,
+        marginBottom: Platform.OS === 'ios' ? 60 : 0,
       }}>
       <StatusBar backgroundColor="white" barStyle="dark-content" />
       {!title ? (
@@ -25,7 +33,7 @@ export default ({navigation, children, title}) => {
       ) : (
         <Header
           style={{
-            height: 80,
+            height: Platform.OS === 'android' ? 70 : 80,
             backgroundColor: '#31d0cf',
             justifyContent: 'flex-start',
             alignItems: 'center',
@@ -44,7 +52,18 @@ export default ({navigation, children, title}) => {
           </Text>
         </Header>
       )}
-      {children}
+      {scrollview ? (
+        <ScrollView
+          style={{
+            height: Dimensions.get('window').height - 100,
+          }}>
+          {children}
+        </ScrollView>
+      ) : (
+        <View style={{height: Dimensions.get('window').height - 100}}>
+          {children}
+        </View>
+      )}
     </SafeAreaView>
   );
 };

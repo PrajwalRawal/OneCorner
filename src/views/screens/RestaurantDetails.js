@@ -7,6 +7,7 @@ import {
   ScrollView,
   FlatList,
   Modal,
+  Dimensions,
 } from 'react-native';
 import MainLayout from '../layouts/MainLayout';
 import {SliderBox} from 'react-native-image-slider-box';
@@ -14,6 +15,8 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Stars from 'react-native-stars';
 import ReadMore from 'react-native-read-more-text';
 import {ProgressBar} from 'react-native-multicolor-progress-bar';
+import Table from 'react-native-simple-table';
+// import MapView from 'react-native-maps';
 
 export default ({navigation}) => {
   const images = [
@@ -70,6 +73,28 @@ export default ({navigation}) => {
       description:
         'Great night, great service food and drinks, definitely be back again.',
     },
+  ];
+
+  const columns = [
+    {
+      title: 'Day',
+      dataIndex: 'day',
+      width: 150,
+    },
+    {
+      title: 'Time',
+      dataIndex: 'time',
+      width: 250,
+    },
+  ];
+
+  const dataSource = [
+    {day: 'Open today', time: 'Opens at 6:00 pm'},
+    {day: 'Wednesday', time: '6:00 pm - 2:00 am'},
+    {day: 'Thursday', time: '12:00 pm  2:00 am'},
+    {day: 'Friday', time: 'Closed'},
+    {day: 'Saturday', time: '6:00 pm - 2:00 am'},
+    {day: 'Sunday', time: 'Closed'},
   ];
 
   const [showAbout, setShowAbout] = useState(true);
@@ -282,336 +307,503 @@ export default ({navigation}) => {
           </View>
         </View>
         <View style={{backgroundColor: 'white'}}>
-          <View style={{margin: 20}}>
-            <Text
+          {showAbout ? (
+            <View
               style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                color: '#555',
-                marginBottom: 15,
+                margin: 20,
               }}>
-              About Chicken Station
-            </Text>
-            <ReadMore
-              numberOfLines={4}
-              onReady={handleTextReady}
-              renderTruncatedFooter={handleReadMore}
-              renderRevealedFooter={handleShowLess}>
-              <Text>
-                Lorem Ipsum is simply dummy text of the printing and typesetting
-                industry. Lorem Ipsum has been the industry's standard dummy
-                text ever since the 1500s, when an unknown printer took a galley
-                of type and scrambled it to make a type specimen book. It has
-                survived not only five centuries, but also the leap into
-                electronic typesetting, remaining essentially unchanged. It was
-                popularised in the 1960s with the release of Letraset sheets
-                containing Lorem Ipsum passages, and more recently with desktop
-                publishing software like Aldus PageMaker including versions of
-                Lorem Ipsum. Why do we use it? It is a long established fact
-                that a reader will be distracted by the readable content of a
-                page when looking at its layout. The point of using Lorem Ipsum
-                is that it has a more-or-less normal distribution of letters, as
-                opposed to using 'Content here, content here', making it look
-                like readable English. Many desktop publishing packages and web
-                page editors now use Lorem Ipsum as their default model text,
-                and a search for 'lorem ipsum' will uncover many web sites still
-                in their infancy. Various versions have evolved over the years,
-                sometimes by accident, sometimes on purpose (injected humour and
-                the like). Where does it come from? Contrary to popular belief,
-                Lorem Ipsum is not simply random text. It has roots in a piece
-                of classical Latin literature from 45 BC, making it over 2000
-                years old. Richard McClintock, a Latin professor at
-                Hampden-Sydney College in Virginia, looked up one of the more
-                obscure Latin words.
-              </Text>
-            </ReadMore>
-          </View>
-          <View style={{margin: 20}}>
-            <Text
-              style={{
-                fontSize: 20,
-                fontWeight: 'bold',
-                color: '#555',
-                marginBottom: 15,
-              }}>
-              Reviews
-            </Text>
-            <View style={{backgroundColor: 'white'}}>
-              <View
+              <Text
                 style={{
-                  alignItems: 'center',
-                  padding: 5,
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#555',
+                  marginBottom: 15,
                 }}>
-                <Text style={{fontSize: 60}}>😜</Text>
-                <Stars
-                  default={4.5}
-                  count={5}
-                  half={true}
-                  starSize={50}
-                  fullStar={<Icon name={'star'} size={30} color="#31d0cf" />}
-                  emptyStar={<Icon name={'star'} size={30} color="#555" />}
-                  halfStar={
-                    <Icon name={'star-half'} size={30} color="#31d0cf" />
-                  }
-                />
-                <Text style={{fontSize: 16, color: '#555', fontWeight: 'bold'}}>
-                  Excellent
+                About Chicken Station
+              </Text>
+              <ReadMore
+                numberOfLines={4}
+                onReady={handleTextReady}
+                renderTruncatedFooter={handleReadMore}
+                renderRevealedFooter={handleShowLess}>
+                <Text>
+                  Lorem Ipsum is simply dummy text of the printing and
+                  typesetting industry. Lorem Ipsum has been the industry's
+                  standard dummy text ever since the 1500s, when an unknown
+                  printer took a galley of type and scrambled it to make a type
+                  specimen book. It has survived not only five centuries, but
+                  also the leap into electronic typesetting, remaining
+                  essentially unchanged. It was popularised in the 1960s with
+                  the release of Letraset sheets containing Lorem Ipsum
+                  passages, and more recently with desktop publishing software
+                  like Aldus PageMaker including versions of Lorem Ipsum. Why do
+                  we use it? It is a long established fact that a reader will be
+                  distracted by the readable content of a page when looking at
+                  its layout. The point of using Lorem Ipsum is that it has a
+                  more-or-less normal distribution of letters, as opposed to
+                  using 'Content here, content here', making it look like
+                  readable English. Many desktop publishing packages and web
+                  page editors now use Lorem Ipsum as their default model text,
+                  and a search for 'lorem ipsum' will uncover many web sites
+                  still in their infancy. Various versions have evolved over the
+                  years, sometimes by accident, sometimes on purpose (injected
+                  humour and the like). Where does it come from? Contrary to
+                  popular belief, Lorem Ipsum is not simply random text. It has
+                  roots in a piece of classical Latin literature from 45 BC,
+                  making it over 2000 years old. Richard McClintock, a Latin
+                  professor at Hampden-Sydney College in Virginia, looked up one
+                  of the more obscure Latin words.
                 </Text>
-              </View>
-              <View style={{margin: 20}}>
-                <Text
+              </ReadMore>
+            </View>
+          ) : (
+            <></>
+          )}
+          {showReviews ? (
+            <View style={{margin: 20}}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#555',
+                  marginBottom: 15,
+                }}>
+                Reviews
+              </Text>
+              <View style={{backgroundColor: 'white'}}>
+                <View
                   style={{
-                    fontSize: 24,
-                    color: '#555',
-                    marginTop: 10,
-                    marginBottom: 10,
-                    fontWeight: 'bold',
+                    alignItems: 'center',
+                    padding: 5,
                   }}>
-                  Ratings
-                </Text>
-                <View style={{flexDirection: 'row'}}>
-                  <ProgressBar
-                    backgroundBarStyle={{
-                      width: 150,
-                      height: 18,
-                      borderColor: 'black',
-                      borderWidth: 1,
+                  <Text style={{fontSize: 60}}>😜</Text>
+                  <Stars
+                    default={4.5}
+                    count={5}
+                    half={true}
+                    starSize={50}
+                    fullStar={<Icon name={'star'} size={30} color="#31d0cf" />}
+                    emptyStar={<Icon name={'star'} size={30} color="#555" />}
+                    halfStar={
+                      <Icon name={'star-half'} size={30} color="#31d0cf" />
+                    }
+                  />
+                  <Text
+                    style={{fontSize: 16, color: '#555', fontWeight: 'bold'}}>
+                    Excellent
+                  </Text>
+                </View>
+                <View style={{margin: 20}}>
+                  <Text
+                    style={{
+                      fontSize: 24,
+                      color: '#555',
+                      marginTop: 10,
                       marginBottom: 10,
-                    }}
-                    textStyle={{
-                      color: 'white',
                       fontWeight: 'bold',
-                      fontSize: 8,
-                      marginTop: 3,
-                    }}
-                    arrayOfProgressObjects={[
-                      {
-                        color: '#04a745',
-                        value: 0.7,
-                        nameToDisplay: '70%',
-                      },
-                    ]}
-                  />
-                  <Text
-                    style={{marginLeft: 10, color: '#555', fontWeight: 'bold'}}>
-                    Noise Levels
+                    }}>
+                    Ratings
                   </Text>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <ProgressBar
-                    backgroundBarStyle={{
-                      width: 150,
-                      height: 18,
-                      borderColor: 'black',
-                      borderWidth: 1,
-                      marginBottom: 10,
-                    }}
-                    textStyle={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: 8,
-                      marginTop: 3,
-                    }}
-                    arrayOfProgressObjects={[
-                      {
-                        color: '#1feb1f',
-                        value: 0.55,
-                        nameToDisplay: '50%',
-                      },
-                    ]}
-                  />
-                  <Text
-                    style={{marginLeft: 10, color: '#555', fontWeight: 'bold'}}>
-                    Value For Money
-                  </Text>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <ProgressBar
-                    backgroundBarStyle={{
-                      width: 150,
-                      height: 18,
-                      borderColor: 'black',
-                      borderWidth: 1,
-                      marginBottom: 10,
-                    }}
-                    textStyle={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: 8,
-                      marginTop: 3,
-                    }}
-                    arrayOfProgressObjects={[
-                      {
-                        color: '#7ee635',
-                        value: 0.85,
-                        nameToDisplay: '85%',
-                      },
-                    ]}
-                  />
-                  <Text
-                    style={{marginLeft: 10, color: '#555', fontWeight: 'bold'}}>
-                    Atmosphere
-                  </Text>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <ProgressBar
-                    backgroundBarStyle={{
-                      width: 150,
-                      height: 18,
-                      borderColor: 'black',
-                      borderWidth: 1,
-                      marginBottom: 10,
-                    }}
-                    textStyle={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: 8,
-                      marginTop: 3,
-                    }}
-                    arrayOfProgressObjects={[
-                      {
-                        color: '#ddc50a',
-                        value: 0.6,
-                        nameToDisplay: '60%',
-                      },
-                    ]}
-                  />
-                  <Text
-                    style={{marginLeft: 10, color: '#555', fontWeight: 'bold'}}>
-                    Food
-                  </Text>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <ProgressBar
-                    backgroundBarStyle={{
-                      width: 150,
-                      height: 18,
-                      borderColor: 'black',
-                      borderWidth: 1,
-                      marginBottom: 10,
-                    }}
-                    textStyle={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: 8,
-                      marginTop: 3,
-                    }}
-                    arrayOfProgressObjects={[
-                      {
-                        color: '#fbba08',
-                        value: 0.95,
-                        nameToDisplay: '95%',
-                      },
-                    ]}
-                  />
-                  <Text
-                    style={{marginLeft: 10, color: '#555', fontWeight: 'bold'}}>
-                    Service
-                  </Text>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <ProgressBar
-                    backgroundBarStyle={{
-                      width: 150,
-                      height: 18,
-                      borderColor: 'black',
-                      borderWidth: 1,
-                    }}
-                    textStyle={{
-                      color: 'white',
-                      fontWeight: 'bold',
-                      fontSize: 8,
-                      marginTop: 3,
-                    }}
-                    arrayOfProgressObjects={[
-                      {
-                        color: '#f87f0d',
-                        value: 0.75,
-                        nameToDisplay: '75%',
-                      },
-                    ]}
-                  />
-                  <Text
-                    style={{marginLeft: 10, color: '#555', fontWeight: 'bold'}}>
-                    Music
-                  </Text>
-                </View>
-                <Text
-                  style={{fontSize: 16, textAlign: 'right', color: '#31d0cf'}}
-                  onPress={() => setDisplay(true)}>
-                  Show all
-                </Text>
-              </View>
-              <FlatList
-                data={ReviewData}
-                style={{marginLeft: -15, marginRight: -15}}
-                showsVerticalScrollIndicator={false}
-                keyExtractor={item => item}
-                renderItem={({item}) => {
-                  return (
-                    <TouchableOpacity
-                      style={{
-                        marginLeft: 20,
-                        marginRight: 20,
-                        borderTopWidth: 1,
-                        borderTopColor: '#eaeaea',
-                        paddingTop: 20,
-                        paddingBottom: 20,
+                  <View style={{flexDirection: 'row'}}>
+                    <ProgressBar
+                      backgroundBarStyle={{
+                        width: 150,
+                        height: 18,
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        marginBottom: 10,
                       }}
-                      activeOpacity={0.5}
-                      onPress={() => setDisplay(true)}>
-                      <View
+                      textStyle={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 8,
+                        marginTop: 3,
+                      }}
+                      arrayOfProgressObjects={[
+                        {
+                          color: '#04a745',
+                          value: 0.7,
+                          nameToDisplay: '70%',
+                        },
+                      ]}
+                    />
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        color: '#555',
+                        fontWeight: 'bold',
+                      }}>
+                      Noise Levels
+                    </Text>
+                  </View>
+                  <View style={{flexDirection: 'row'}}>
+                    <ProgressBar
+                      backgroundBarStyle={{
+                        width: 150,
+                        height: 18,
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        marginBottom: 10,
+                      }}
+                      textStyle={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 8,
+                        marginTop: 3,
+                      }}
+                      arrayOfProgressObjects={[
+                        {
+                          color: '#1feb1f',
+                          value: 0.55,
+                          nameToDisplay: '50%',
+                        },
+                      ]}
+                    />
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        color: '#555',
+                        fontWeight: 'bold',
+                      }}>
+                      Value For Money
+                    </Text>
+                  </View>
+                  <View style={{flexDirection: 'row'}}>
+                    <ProgressBar
+                      backgroundBarStyle={{
+                        width: 150,
+                        height: 18,
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        marginBottom: 10,
+                      }}
+                      textStyle={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 8,
+                        marginTop: 3,
+                      }}
+                      arrayOfProgressObjects={[
+                        {
+                          color: '#7ee635',
+                          value: 0.85,
+                          nameToDisplay: '85%',
+                        },
+                      ]}
+                    />
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        color: '#555',
+                        fontWeight: 'bold',
+                      }}>
+                      Atmosphere
+                    </Text>
+                  </View>
+                  <View style={{flexDirection: 'row'}}>
+                    <ProgressBar
+                      backgroundBarStyle={{
+                        width: 150,
+                        height: 18,
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        marginBottom: 10,
+                      }}
+                      textStyle={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 8,
+                        marginTop: 3,
+                      }}
+                      arrayOfProgressObjects={[
+                        {
+                          color: '#ddc50a',
+                          value: 0.6,
+                          nameToDisplay: '60%',
+                        },
+                      ]}
+                    />
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        color: '#555',
+                        fontWeight: 'bold',
+                      }}>
+                      Food
+                    </Text>
+                  </View>
+                  <View style={{flexDirection: 'row'}}>
+                    <ProgressBar
+                      backgroundBarStyle={{
+                        width: 150,
+                        height: 18,
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        marginBottom: 10,
+                      }}
+                      textStyle={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 8,
+                        marginTop: 3,
+                      }}
+                      arrayOfProgressObjects={[
+                        {
+                          color: '#fbba08',
+                          value: 0.95,
+                          nameToDisplay: '95%',
+                        },
+                      ]}
+                    />
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        color: '#555',
+                        fontWeight: 'bold',
+                      }}>
+                      Service
+                    </Text>
+                  </View>
+                  <View style={{flexDirection: 'row'}}>
+                    <ProgressBar
+                      backgroundBarStyle={{
+                        width: 150,
+                        height: 18,
+                        borderColor: 'black',
+                        borderWidth: 1,
+                      }}
+                      textStyle={{
+                        color: 'white',
+                        fontWeight: 'bold',
+                        fontSize: 8,
+                        marginTop: 3,
+                      }}
+                      arrayOfProgressObjects={[
+                        {
+                          color: '#f87f0d',
+                          value: 0.75,
+                          nameToDisplay: '75%',
+                        },
+                      ]}
+                    />
+                    <Text
+                      style={{
+                        marginLeft: 10,
+                        color: '#555',
+                        fontWeight: 'bold',
+                      }}>
+                      Music
+                    </Text>
+                  </View>
+                  <Text
+                    style={{
+                      fontSize: 16,
+                      textAlign: 'right',
+                      color: '#31d0cf',
+                    }}
+                    onPress={() => setDisplay(true)}>
+                    Show all
+                  </Text>
+                </View>
+                <FlatList
+                  data={ReviewData}
+                  style={{marginLeft: -15, marginRight: -15}}
+                  showsVerticalScrollIndicator={false}
+                  keyExtractor={item => item}
+                  renderItem={({item}) => {
+                    return (
+                      <TouchableOpacity
                         style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                        }}>
-                        <View style={{flexDirection: 'row'}}>
-                          <View
+                          marginLeft: 20,
+                          marginRight: 20,
+                          borderTopWidth: 1,
+                          borderTopColor: '#eaeaea',
+                          paddingTop: 20,
+                          paddingBottom: 20,
+                        }}
+                        activeOpacity={0.5}
+                        onPress={() => setDisplay(true)}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                          }}>
+                          <View style={{flexDirection: 'row'}}>
+                            <View
+                              style={{
+                                height: 40,
+                                width: 40,
+                                borderRadius: 60,
+                                backgroundColor: '#31d0cf',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                              }}>
+                              <Text style={{fontSize: 16, color: 'white'}}>
+                                {item.initials}
+                              </Text>
+                            </View>
+                            <View style={{marginLeft: 10}}>
+                              <Text style={{fontWeight: 'bold'}}>
+                                {item.name}
+                              </Text>
+                              <Text>
+                                {item.time} ago | {item.numberOfReviews} Reviews
+                              </Text>
+                            </View>
+                          </View>
+                          <Text
                             style={{
-                              height: 40,
-                              width: 40,
-                              borderRadius: 60,
-                              backgroundColor: '#31d0cf',
-                              justifyContent: 'center',
-                              alignItems: 'center',
+                              fontSize: 24,
+                              fontWeight: 'bold',
+                              color: '#58d69b',
                             }}>
-                            <Text style={{fontSize: 16, color: 'white'}}>
-                              {item.initials}
-                            </Text>
-                          </View>
-                          <View style={{marginLeft: 10}}>
-                            <Text style={{fontWeight: 'bold'}}>
-                              {item.name}
-                            </Text>
-                            <Text>
-                              {item.time} ago | {item.numberOfReviews} Reviews
-                            </Text>
-                          </View>
+                            {item.rating}
+                            <Text style={{fontSize: 14}}>/5</Text>
+                          </Text>
                         </View>
                         <Text
                           style={{
-                            fontSize: 24,
-                            fontWeight: 'bold',
-                            color: '#58d69b',
+                            marginTop: 10,
+                            lineHeight: 18,
+                            color: '#555',
                           }}>
-                          {item.rating}
-                          <Text style={{fontSize: 14}}>/5</Text>
+                          {item.description}
                         </Text>
-                      </View>
-                      <Text
-                        style={{marginTop: 10, lineHeight: 18, color: '#555'}}>
-                        {item.description}
-                      </Text>
-                    </TouchableOpacity>
-                  );
-                }}
-              />
-              <DisplayModal
-                display={display}
-                setDisplay={setDisplay}
-                navigation={navigation}
-              />
+                      </TouchableOpacity>
+                    );
+                  }}
+                />
+                <DisplayModal
+                  display={display}
+                  setDisplay={setDisplay}
+                  navigation={navigation}
+                />
+              </View>
+            </View>
+          ) : (
+            <></>
+          )}
+          {showPhotos ? (
+            <View style={{margin: 20}}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#555',
+                  marginBottom: 15,
+                }}>
+                Photos
+              </Text>
+              <View style={{backgroundColor: 'white'}}>
+                <View
+                  style={{
+                    // flex: 1,
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    justifyContent: 'space-between',
+                  }}>
+                  {images.map(q => {
+                    return (
+                      <Image
+                        key={q.image}
+                        source={require('../../assets/cardImage.jpg')}
+                        style={{
+                          width: Dimensions.get('screen').width / 2.3,
+                          height: 150,
+                          resizeMode: 'cover',
+                          marginBottom: 15,
+                        }}
+                      />
+                    );
+                  })}
+                </View>
+              </View>
+            </View>
+          ) : (
+            <></>
+          )}
+          <View
+            style={{
+              margin: 20,
+            }}>
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                marginBottom: 10,
+              }}>
+              <Icon name="map" size={25} color="#555" />
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#555',
+                  marginLeft: 10,
+                }}>
+                Map
+              </Text>
+            </View>
+            <Image
+              source={require('../../assets/maps.png')}
+              style={{
+                height: 250,
+                width: Dimensions.get('screen').width - 45,
+                resizeMode: 'cover',
+              }}
+            />
+            <View
+              style={{
+                marginTop: 20,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 20,
+                }}>
+                <Icon name="clock-outline" size={25} color="#555" />
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#555',
+                    marginLeft: 10,
+                  }}>
+                  Opening Hours
+                </Text>
+              </View>
+              <Table height={180} columns={columns} dataSource={dataSource} />
+            </View>
+            <View style={{marginTop: 20}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginBottom: 20,
+                }}>
+                <Icon name="map-marker-radius" size={25} color="#555" />
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight: 'bold',
+                    color: '#555',
+                    marginLeft: 10,
+                  }}>
+                  Address
+                </Text>
+              </View>
+              <View
+                style={{
+                  borderWidth: 1,
+                  padding: 10,
+                  borderColor: '#eaeaea',
+                  alignItems: 'center',
+                }}>
+                <Text style={{marginBottom: 5}}>PIPAL BOT MARG</Text>
+                <Text style={{marginBottom: 5}}>KATHMANDU 44600</Text>
+                <Text style={{marginBottom: 5}}>NEPAL</Text>
+              </View>
             </View>
           </View>
         </View>
@@ -773,8 +965,8 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
             style={{
               borderTopWidth: 1,
               borderTopColor: '#eaeaea',
-              borderBottomColor: '#eaeaea',
-              borderBottomWidth: 1,
+              // borderBottomColor: '#eaeaea',
+              // borderBottomWidth: 1,
               justifyContent: 'flex-end',
               flexDirection: 'row',
               padding: 10,
@@ -808,67 +1000,74 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
               </Text>
             </View>
           </View>
-          <FlatList
-            data={ReviewData}
-            showsVerticalScrollIndicator={false}
-            keyExtractor={item => item}
-            renderItem={({item}) => {
-              return (
-                <TouchableOpacity
-                  style={{
-                    marginLeft: 20,
-                    marginRight: 20,
-                    borderBottomWidth: 1,
-                    borderBottomColor: '#eaeaea',
-                    paddingTop: 20,
-                    paddingBottom: 20,
-                  }}
-                  activeOpacity={0.5}
-                  onPress={() => setDisplay(true)}>
-                  <View
+          <View style={{marginBottom: 200}}>
+            <FlatList
+              data={ReviewData}
+              showsVerticalScrollIndicator={false}
+              keyExtractor={item => item}
+              renderItem={({item}) => {
+                return (
+                  <TouchableOpacity
                     style={{
-                      flexDirection: 'row',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                    }}>
-                    <View style={{flexDirection: 'row'}}>
+                      // marginLeft: 20,
+                      // marginRight: 20,
+                      borderTopWidth: 1,
+                      borderTopColor: '#eaeaea',
+                      paddingTop: 20,
+                      paddingBottom: 20,
+                    }}
+                    activeOpacity={0.5}
+                    onPress={() => setDisplay(true)}>
+                    <View style={{marginLeft: 20, marginRight: 20}}>
                       <View
                         style={{
-                          height: 40,
-                          width: 40,
-                          borderRadius: 60,
-                          backgroundColor: '#31d0cf',
-                          justifyContent: 'center',
+                          flexDirection: 'row',
                           alignItems: 'center',
+                          justifyContent: 'space-between',
                         }}>
-                        <Text style={{fontSize: 16, color: 'white'}}>
-                          {item.initials}
+                        <View style={{flexDirection: 'row'}}>
+                          <View
+                            style={{
+                              height: 40,
+                              width: 40,
+                              borderRadius: 60,
+                              backgroundColor: '#31d0cf',
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                            }}>
+                            <Text style={{fontSize: 16, color: 'white'}}>
+                              {item.initials}
+                            </Text>
+                          </View>
+                          <View style={{marginLeft: 10}}>
+                            <Text style={{fontWeight: 'bold'}}>
+                              {item.name}
+                            </Text>
+                            <Text>
+                              {item.time} ago | {item.numberOfReviews} Reviews
+                            </Text>
+                          </View>
+                        </View>
+                        <Text
+                          style={{
+                            fontSize: 24,
+                            fontWeight: 'bold',
+                            color: '#58d69b',
+                          }}>
+                          {item.rating}
+                          <Text style={{fontSize: 14}}>/5</Text>
                         </Text>
                       </View>
-                      <View style={{marginLeft: 10}}>
-                        <Text style={{fontWeight: 'bold'}}>{item.name}</Text>
-                        <Text>
-                          {item.time} ago | {item.numberOfReviews} Reviews
-                        </Text>
-                      </View>
+                      <Text
+                        style={{marginTop: 10, lineHeight: 18, color: '#555'}}>
+                        {item.description}
+                      </Text>
                     </View>
-                    <Text
-                      style={{
-                        fontSize: 24,
-                        fontWeight: 'bold',
-                        color: '#58d69b',
-                      }}>
-                      {item.rating}
-                      <Text style={{fontSize: 14}}>/5</Text>
-                    </Text>
-                  </View>
-                  <Text style={{marginTop: 10, lineHeight: 18, color: '#555'}}>
-                    {item.description}
-                  </Text>
-                </TouchableOpacity>
-              );
-            }}
-          />
+                  </TouchableOpacity>
+                );
+              }}
+            />
+          </View>
         </ScrollView>
       </MainLayout>
     </Modal>

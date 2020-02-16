@@ -6,7 +6,6 @@ import {
   StyleSheet,
   TextInput,
   TouchableOpacity,
-  ScrollView,
   SectionList,
   Image,
   StatusBar,
@@ -93,7 +92,7 @@ export default ({navigation}) => {
     <SafeAreaView
       style={{
         backgroundColor: '#31d0cf',
-        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : -50,
+        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
       }}>
       <View style={styles.page}>
         <View style={{backgroundColor: '#31d0cf'}}>
@@ -223,10 +222,10 @@ export default ({navigation}) => {
               marginLeft: 20,
               marginRight: 20,
             }}>
-            <ScrollView>
+            <View style={{marginBottom: 500}}>
               <View
                 style={{
-                  marginTop: 10,
+                  marginTop: 30,
                   alignItems: 'center',
                   justifyContent: 'flex-start',
                   flexDirection: 'row',
@@ -242,7 +241,7 @@ export default ({navigation}) => {
                   SEE ALL RESTAURANTS
                 </Text>
               </View>
-              <View style={{marginTop: 20}}>
+              <View style={{marginTop: 30}}>
                 <Text
                   style={{
                     fontWeight: 'bold',
@@ -253,6 +252,8 @@ export default ({navigation}) => {
                   TOP CUISINE
                 </Text>
                 <SectionList
+                  scrollEnabled={false}
+                  style={{marginBottom: 300}}
                   sections={CuisineSections}
                   keyExtractor={(_, i) => i.toString()}
                   renderItem={({item}) => {
@@ -287,7 +288,7 @@ export default ({navigation}) => {
                   }}
                 />
               </View>
-            </ScrollView>
+            </View>
           </View>
         ) : (
           <></>
@@ -298,10 +299,10 @@ export default ({navigation}) => {
               marginLeft: 20,
               marginRight: 20,
             }}>
-            <ScrollView>
+            <View style={{marginBottom: 500}}>
               <View
                 style={{
-                  marginTop: 10,
+                  marginTop: 30,
                   alignItems: 'center',
                   justifyContent: 'flex-start',
                   flexDirection: 'row',
@@ -317,7 +318,7 @@ export default ({navigation}) => {
                   NEAR ME
                 </Text>
               </View>
-              <View style={{marginTop: 20}}>
+              <View style={{marginTop: 30}}>
                 <Text
                   style={{
                     fontWeight: 'bold',
@@ -329,6 +330,7 @@ export default ({navigation}) => {
                 </Text>
                 <SectionList
                   sections={LocationSections}
+                  scrollEnabled={false}
                   keyExtractor={(_, i) => i.toString()}
                   renderItem={({item}) => {
                     return (
@@ -363,7 +365,7 @@ export default ({navigation}) => {
                   }}
                 />
               </View>
-            </ScrollView>
+            </View>
           </View>
         ) : (
           <></>

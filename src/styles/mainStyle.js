@@ -1,11 +1,11 @@
 import {StyleSheet, Dimensions} from 'react-native';
 export default StyleSheet.create({
   searchBox: {
-    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: 'white',
     height: 45,
+    width: Dimensions.get('screen').width - 20,
     paddingLeft: 10,
     paddingRight: 10,
     borderRadius: 5,

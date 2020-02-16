@@ -11,7 +11,6 @@ import {
   Image,
 } from 'react-native';
 import {Button, Icon} from 'native-base';
-import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const MealData = ['Breakfast', 'Lunch', 'Dinner', 'Specials'];
 
