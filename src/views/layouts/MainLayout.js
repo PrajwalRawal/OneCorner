@@ -15,7 +15,6 @@ export default ({navigation, children, title, scrollview}) => {
     <SafeAreaView
       style={{
         marginTop: Platform.OS === 'android' ? 0 : -50,
-        marginBottom: Platform.OS === 'ios' ? 60 : 0,
       }}>
       {!title ? (
         <Header

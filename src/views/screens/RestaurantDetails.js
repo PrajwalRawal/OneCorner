@@ -76,7 +76,7 @@ const DetailView = ({navigation}) => {
     },
   ];
 
-  const columns = [
+  const column1 = [
     {
       title: 'Day',
       dataIndex: 'day',
@@ -89,6 +89,24 @@ const DetailView = ({navigation}) => {
     },
   ];
 
+  const column2 = [
+    {
+      title: 'Date',
+      dataIndex: 'date',
+      width: 150,
+    },
+    {
+      title: 'Time',
+      dataIndex: 'time',
+      width: 60,
+    },
+    {
+      title: 'Event Name',
+      dataIndex: 'eventName',
+      width: 150,
+    },
+  ];
+
   const dataSource = [
     {day: 'Open today', time: 'Opens at 6:00 pm'},
     {day: 'Wednesday', time: '6:00 pm - 2:00 am'},
@@ -96,6 +114,15 @@ const DetailView = ({navigation}) => {
     {day: 'Friday', time: 'Closed'},
     {day: 'Saturday', time: '6:00 pm - 2:00 am'},
     {day: 'Sunday', time: 'Closed'},
+  ];
+
+  const Specials = [
+    {date: '15 Dec 2020', time: '6:00 pm', eventName: 'Good Friday'},
+    {date: '25 Dec 2020', time: '5:00 pm', eventName: 'Christmas Offers'},
+    {date: '15 Dec 2020', time: '6:00 pm', eventName: 'Good Friday'},
+    {date: '25 Dec 2020', time: '5:00 pm', eventName: 'Christmas Offers'},
+    {date: '15 Dec 2020', time: '6:00 pm', eventName: 'Good Friday'},
+    {date: '25 Dec 2020', time: '5:00 pm', eventName: 'Christmas Offers'},
   ];
 
   const [showAbout, setShowAbout] = useState(true);
@@ -163,6 +190,7 @@ const DetailView = ({navigation}) => {
 
   const [display, setDisplay] = useState(false);
   const {width} = Dimensions.get('screen');
+
   return (
     <MainLayout title="Chicken Station" navigation={navigation}>
       <ScrollView stickyHeaderIndices={[2]}>
@@ -170,7 +198,7 @@ const DetailView = ({navigation}) => {
           source={require('../../assets/cardImage.png')}
           style={{
             width: Dimensions.get('screen').width,
-            height: 250,
+            height: 270,
             resizeMode: 'cover',
             backgroundColor: 'white',
           }}
@@ -729,6 +757,22 @@ const DetailView = ({navigation}) => {
           ) : (
             <></>
           )}
+          {showSpecial ? (
+            <View style={{margin: 20}}>
+              <Text
+                style={{
+                  fontSize: 20,
+                  fontWeight: 'bold',
+                  color: '#555',
+                  marginBottom: 15,
+                }}>
+                Specials
+              </Text>
+              <Table height={180} columns={column2} dataSource={Specials} />
+            </View>
+          ) : (
+            <></>
+          )}
           <View
             style={{
               margin: 20,
@@ -779,7 +823,7 @@ const DetailView = ({navigation}) => {
                   Opening Hours
                 </Text>
               </View>
-              <Table height={180} columns={columns} dataSource={dataSource} />
+              <Table height={180} columns={column1} dataSource={dataSource} />
             </View>
             <View style={{marginTop: 20}}>
               <View
