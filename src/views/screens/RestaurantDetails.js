@@ -8,6 +8,7 @@ import {
   FlatList,
   Modal,
   Dimensions,
+  Platform,
 } from 'react-native';
 import MainLayout from '../layouts/MainLayout';
 import {SliderBox} from 'react-native-image-slider-box';
@@ -18,7 +19,7 @@ import {ProgressBar} from 'react-native-multicolor-progress-bar';
 import Table from 'react-native-simple-table';
 // import MapView from 'react-native-maps';
 
-export default ({navigation}) => {
+const DetailView = ({navigation}) => {
   const images = [
     require('../../assets/cardImage.jpg'),
     require('../../assets/cardImage.jpg'),
@@ -161,16 +162,18 @@ export default ({navigation}) => {
   };
 
   const [display, setDisplay] = useState(false);
-
+  const {width} = Dimensions.get('screen');
   return (
     <MainLayout title="Chicken Station" navigation={navigation}>
       <ScrollView stickyHeaderIndices={[2]}>
-        <SliderBox
-          images={images}
-          sliderBoxHeight={250}
-          resizeMode={'cover'}
-          dotColor="#31d0cf"
-          imageLoadingColor="#31d0cf"
+        <Image
+          source={require('../../assets/cardImage.png')}
+          style={{
+            width: Dimensions.get('screen').width,
+            height: 250,
+            resizeMode: 'cover',
+            backgroundColor: 'white',
+          }}
         />
         <View style={{backgroundColor: 'white'}}>
           <View style={{margin: 20}}>
@@ -376,7 +379,10 @@ export default ({navigation}) => {
                     alignItems: 'center',
                     padding: 5,
                   }}>
-                  <Text style={{fontSize: 60}}>😜</Text>
+                  <Image
+                    style={{height: 60, width: 60, resizeMode: 'cover'}}
+                    source={require('../../assets/emoji.png')}
+                  />
                   <Stars
                     default={4.5}
                     count={5}
@@ -796,7 +802,8 @@ export default ({navigation}) => {
               <View
                 style={{
                   borderWidth: 1,
-                  padding: 10,
+                  paddingBottom: 30,
+                  paddingTop: 30,
                   borderColor: '#eaeaea',
                   alignItems: 'center',
                 }}>
@@ -808,6 +815,30 @@ export default ({navigation}) => {
           </View>
         </View>
       </ScrollView>
+      <View
+        style={{
+          height: 100,
+          position: 'absolute',
+          left: 0,
+          bottom: -15,
+          alignItems: 'center',
+          width,
+          justifyContent: 'center',
+        }}>
+        <TouchableOpacity
+          style={{
+            padding: 10,
+            backgroundColor: '#31d0cf',
+            borderRadius: 10,
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          activeOpacity={0.9}>
+          <Text style={{fontSize: 16, fontWeight: 'bold', color: 'white'}}>
+            Reserve Now
+          </Text>
+        </TouchableOpacity>
+      </View>
     </MainLayout>
   );
 };
@@ -865,211 +896,227 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
       visible={display}
       animationType="slide"
       presentationStyle="fullScreen">
-      <MainLayout title="Chicken Station" navigation={navigation}>
-        <ScrollView>
-          <View
-            style={{
-              padding: 20,
-              backgroundColor: '#f0f5f5',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-              flexDirection: 'row',
-            }}>
-            <Text style={{fontSize: 24, fontWeight: 'bold'}}>Reviews</Text>
-            <View>
-              <Text
-                style={{fontSize: 18, color: '#58d69b', fontWeight: 'bold'}}>
-                Great
-              </Text>
-              <Text
-                style={{
-                  fontSize: 30,
-                  fontWeight: 'bold',
-                  color: '#58d69b',
-                }}>
-                4.2<Text style={{fontSize: 16}}>/5</Text>
-              </Text>
-              <Text
-                style={{
-                  color: '#807d7d',
-                }}>
-                59 Reviews
-              </Text>
-            </View>
-          </View>
-          <View style={{margin: 20}}>
+      <View style={{marginTop: Platform.OS === 'android' ? -35 : 0}}>
+        <MainLayout title="Chicken Station" navigation={navigation}>
+          <ScrollView>
             <View
               style={{
-                flexDirection: 'row',
+                padding: 20,
+                backgroundColor: '#f0f5f5',
                 justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
-                Noise levels:
-              </Text>
-              <Text>Good</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
-                Value for money:
-              </Text>
-              <Text>Average value</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
-                Atmosphere:
-              </Text>
-              <Text>Pleasant</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>Food:</Text>
-              <Text>Average</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
-                Service:
-              </Text>
-              <Text>Great</Text>
-            </View>
-            <View
-              style={{
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                marginTop: 10,
-              }}>
-              <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>Music:</Text>
-              <Text>Good</Text>
-            </View>
-          </View>
-          <View
-            style={{
-              borderTopWidth: 1,
-              borderTopColor: '#eaeaea',
-              // borderBottomColor: '#eaeaea',
-              // borderBottomWidth: 1,
-              justifyContent: 'flex-end',
-              flexDirection: 'row',
-              padding: 10,
-            }}>
-            <View
-              style={{
-                flexDirection: 'row',
-                marginRight: 20,
                 alignItems: 'center',
+                flexDirection: 'row',
               }}>
-              <Icon name="chevron-down" size={15} color="#555" />
-              <Text
-                style={{
-                  marginRight: 30,
-                  marginLeft: 5,
-                  fontSize: 14,
-                  fontWeight: 'bold',
-                  color: '#555',
-                }}>
-                Rating
-              </Text>
-              <Icon name="chevron-down" size={15} color="#555" />
-              <Text
-                style={{
-                  marginLeft: 5,
-                  fontSize: 14,
-                  fontWeight: 'bold',
-                  color: '#555',
-                }}>
-                Time
-              </Text>
+              <Text style={{fontSize: 24, fontWeight: 'bold'}}>Reviews</Text>
+              <View>
+                <Text
+                  style={{fontSize: 18, color: '#58d69b', fontWeight: 'bold'}}>
+                  Great
+                </Text>
+                <Text
+                  style={{
+                    fontSize: 30,
+                    fontWeight: 'bold',
+                    color: '#58d69b',
+                  }}>
+                  4.2<Text style={{fontSize: 16}}>/5</Text>
+                </Text>
+                <Text
+                  style={{
+                    color: '#807d7d',
+                  }}>
+                  59 Reviews
+                </Text>
+              </View>
             </View>
-          </View>
-          <View style={{marginBottom: 200}}>
-            <FlatList
-              data={ReviewData}
-              showsVerticalScrollIndicator={false}
-              keyExtractor={item => item}
-              renderItem={({item}) => {
-                return (
-                  <TouchableOpacity
-                    style={{
-                      // marginLeft: 20,
-                      // marginRight: 20,
-                      borderTopWidth: 1,
-                      borderTopColor: '#eaeaea',
-                      paddingTop: 20,
-                      paddingBottom: 20,
-                    }}
-                    activeOpacity={0.5}
-                    onPress={() => setDisplay(true)}>
-                    <View style={{marginLeft: 20, marginRight: 20}}>
-                      <View
-                        style={{
-                          flexDirection: 'row',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                        }}>
-                        <View style={{flexDirection: 'row'}}>
-                          <View
+            <View style={{margin: 20}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 10,
+                }}>
+                <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
+                  Noise levels:
+                </Text>
+                <Text>Good</Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 10,
+                }}>
+                <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
+                  Value for money:
+                </Text>
+                <Text>Average value</Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 10,
+                }}>
+                <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
+                  Atmosphere:
+                </Text>
+                <Text>Pleasant</Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 10,
+                }}>
+                <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
+                  Food:
+                </Text>
+                <Text>Average</Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 10,
+                }}>
+                <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
+                  Service:
+                </Text>
+                <Text>Great</Text>
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  marginTop: 10,
+                }}>
+                <Text style={{color: '#adaaaa', fontWeight: 'bold'}}>
+                  Music:
+                </Text>
+                <Text>Good</Text>
+              </View>
+            </View>
+            <View
+              style={{
+                borderTopWidth: 1,
+                borderTopColor: '#eaeaea',
+                // borderBottomColor: '#eaeaea',
+                // borderBottomWidth: 1,
+                justifyContent: 'flex-end',
+                flexDirection: 'row',
+                padding: 10,
+              }}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  marginRight: 20,
+                  alignItems: 'center',
+                }}>
+                <Icon name="chevron-down" size={15} color="#555" />
+                <Text
+                  style={{
+                    marginRight: 30,
+                    marginLeft: 5,
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                    color: '#555',
+                  }}>
+                  Rating
+                </Text>
+                <Icon name="chevron-down" size={15} color="#555" />
+                <Text
+                  style={{
+                    marginLeft: 5,
+                    fontSize: 14,
+                    fontWeight: 'bold',
+                    color: '#555',
+                  }}>
+                  Time
+                </Text>
+              </View>
+            </View>
+            <View style={{marginBottom: 200}}>
+              <FlatList
+                data={ReviewData}
+                showsVerticalScrollIndicator={false}
+                keyExtractor={item => item}
+                renderItem={({item}) => {
+                  return (
+                    <TouchableOpacity
+                      style={{
+                        // marginLeft: 20,
+                        // marginRight: 20,
+                        borderTopWidth: 1,
+                        borderTopColor: '#eaeaea',
+                        paddingTop: 20,
+                        paddingBottom: 20,
+                      }}
+                      activeOpacity={0.5}
+                      onPress={() => setDisplay(true)}>
+                      <View style={{marginLeft: 20, marginRight: 20}}>
+                        <View
+                          style={{
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                          }}>
+                          <View style={{flexDirection: 'row'}}>
+                            <View
+                              style={{
+                                height: 40,
+                                width: 40,
+                                borderRadius: 60,
+                                backgroundColor: '#31d0cf',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                              }}>
+                              <Text style={{fontSize: 16, color: 'white'}}>
+                                {item.initials}
+                              </Text>
+                            </View>
+                            <View style={{marginLeft: 10}}>
+                              <Text style={{fontWeight: 'bold'}}>
+                                {item.name}
+                              </Text>
+                              <Text>
+                                {item.time} ago | {item.numberOfReviews} Reviews
+                              </Text>
+                            </View>
+                          </View>
+                          <Text
                             style={{
-                              height: 40,
-                              width: 40,
-                              borderRadius: 60,
-                              backgroundColor: '#31d0cf',
-                              justifyContent: 'center',
-                              alignItems: 'center',
+                              fontSize: 24,
+                              fontWeight: 'bold',
+                              color: '#58d69b',
                             }}>
-                            <Text style={{fontSize: 16, color: 'white'}}>
-                              {item.initials}
-                            </Text>
-                          </View>
-                          <View style={{marginLeft: 10}}>
-                            <Text style={{fontWeight: 'bold'}}>
-                              {item.name}
-                            </Text>
-                            <Text>
-                              {item.time} ago | {item.numberOfReviews} Reviews
-                            </Text>
-                          </View>
+                            {item.rating}
+                            <Text style={{fontSize: 14}}>/5</Text>
+                          </Text>
                         </View>
                         <Text
                           style={{
-                            fontSize: 24,
-                            fontWeight: 'bold',
-                            color: '#58d69b',
+                            marginTop: 10,
+                            lineHeight: 18,
+                            color: '#555',
                           }}>
-                          {item.rating}
-                          <Text style={{fontSize: 14}}>/5</Text>
+                          {item.description}
                         </Text>
                       </View>
-                      <Text
-                        style={{marginTop: 10, lineHeight: 18, color: '#555'}}>
-                        {item.description}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                );
-              }}
-            />
-          </View>
-        </ScrollView>
-      </MainLayout>
+                    </TouchableOpacity>
+                  );
+                }}
+              />
+            </View>
+          </ScrollView>
+        </MainLayout>
+      </View>
     </Modal>
   );
 };
+
+DetailView.navigationOptions = {
+  title: 'Hello',
+};
+
+export default DetailView;

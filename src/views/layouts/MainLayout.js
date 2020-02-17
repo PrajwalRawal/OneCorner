@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  StatusBar,
   SafeAreaView,
   Platform,
   Text,
@@ -15,18 +14,18 @@ export default ({navigation, children, title, scrollview}) => {
   return (
     <SafeAreaView
       style={{
-        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : -50,
+        marginTop: Platform.OS === 'android' ? 0 : -50,
         marginBottom: Platform.OS === 'ios' ? 60 : 0,
       }}>
-      <StatusBar backgroundColor="white" barStyle="dark-content" />
       {!title ? (
         <Header
           style={{
-            height: 80,
+            height: 100,
             borderBottomColor: 'white',
             backgroundColor: '#31d0cf',
             justifyContent: 'center',
             alignItems: 'center',
+            paddingTop: Platform.OS === 'android' ? 30 : 20,
           }}>
           <SearchBar navigation={navigation} />
         </Header>
@@ -60,7 +59,11 @@ export default ({navigation, children, title, scrollview}) => {
           {children}
         </ScrollView>
       ) : (
-        <View style={{height: Dimensions.get('window').height - 100}}>
+        <View
+          style={{
+            height: Dimensions.get('window').height - 100,
+            position: 'relative',
+          }}>
           {children}
         </View>
       )}

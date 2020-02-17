@@ -408,7 +408,7 @@ export default ({navigation}) => {
         <View
           style={{marginLeft: 15, borderWidth: 0.5, borderColor: '#e0dada'}}
         />
-        <View style={{marginTop: 20, marginLeft: 15, marginBottom: 15}}>
+        <View style={{marginTop: 20, marginLeft: 15, paddingBottom: 30}}>
           <Text
             style={{
               fontSize: 20,
