@@ -91,12 +91,16 @@ export default ({navigation}) => {
   return (
     <SafeAreaView
       style={{
-        backgroundColor: '#31d0cf',
-        marginTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+        marginTop: Platform.OS === 'android' ? 0 : -50,
       }}>
       <View style={styles.page}>
         <View style={{backgroundColor: '#31d0cf'}}>
-          <View style={{marginLeft: 20, marginRight: 20}}>
+          <View
+            style={{
+              marginLeft: 20,
+              marginRight: 20,
+              paddingTop: Platform.OS === 'android' ? 30 : 20,
+            }}>
             <View
               style={{
                 flexDirection: 'row',
@@ -151,19 +155,6 @@ export default ({navigation}) => {
                   }}
                 />
               </View>
-              {showLocation ? (
-                <Text
-                  style={{
-                    fontSize: 24,
-                    marginRight: 15,
-                    color: '#bbbcbf',
-                    fontWeight: 'bold',
-                  }}>
-                  X
-                </Text>
-              ) : (
-                <></>
-              )}
             </View>
             <View
               style={{
@@ -200,19 +191,6 @@ export default ({navigation}) => {
                   }}
                 />
               </View>
-              {showCuisine ? (
-                <Text
-                  style={{
-                    fontSize: 24,
-                    marginRight: 15,
-                    color: '#bbbcbf',
-                    fontWeight: 'bold',
-                  }}>
-                  X
-                </Text>
-              ) : (
-                <></>
-              )}
             </View>
           </View>
         </View>

@@ -31,11 +31,12 @@ export default ({navigation, children, title, scrollview}) => {
       ) : (
         <Header
           style={{
-            height: Platform.OS === 'android' ? 70 : 80,
+            height: 80,
+            borderBottomColor: 'white',
             backgroundColor: '#31d0cf',
             justifyContent: 'flex-start',
             alignItems: 'center',
-            flexDirection: 'row',
+            paddingTop: Platform.OS === 'android' ? 30 : 20,
           }}>
           <Button transparent iconRight onPress={() => navigation.goBack()}>
             <Icon name="arrow-back" style={{color: 'white'}} />
@@ -50,7 +51,7 @@ export default ({navigation, children, title, scrollview}) => {
           </Text>
         </Header>
       )}
-      {scrollview ? (
+      {scrollview && !title ? (
         <ScrollView
           style={{
             height: Dimensions.get('window').height - 100,
@@ -60,7 +61,7 @@ export default ({navigation, children, title, scrollview}) => {
       ) : (
         <View
           style={{
-            height: Dimensions.get('window').height - 100,
+            height: Dimensions.get('window').height - 80,
             position: 'relative',
           }}>
           {children}

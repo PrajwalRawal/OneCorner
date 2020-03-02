@@ -18,31 +18,37 @@ const MealData = ['Breakfast', 'Lunch', 'Dinner', 'Specials'];
 
 const SearchCardData = [
   {
+    id: 1,
     title: 'Redmud Coffee',
     type: 'Cafe',
     address: 'Baneshwor',
   },
   {
+    id: 2,
     title: 'Redmud Coffee',
     type: 'Cafe',
     address: 'Baneshwor',
   },
   {
+    id: 3,
     title: 'Redmud Coffee',
     type: 'Cafe',
     address: 'Baneshwor',
   },
   {
+    id: 4,
     title: 'Redmud Coffee',
     type: 'Cafe',
     address: 'Baneshwor',
   },
   {
+    id: 5,
     title: 'Redmud Coffee',
     type: 'Cafe',
     address: 'Baneshwor',
   },
   {
+    id: 6,
     title: 'Redmud Coffee',
     type: 'Cafe',
     address: 'Baneshwor',
@@ -109,7 +115,7 @@ export default ({navigation}) => {
           data={SearchCardData}
           style={{marginLeft: -10, marginRight: -10}}
           showsHorizontalScrollIndicator={false}
-          keyExtractor={item => item}
+          keyExtractor={item => item.id.toString()}
           renderItem={({item}) => {
             return (
               <TouchableOpacity

@@ -1,5 +1,12 @@
 import React from 'react';
-import {SafeAreaView, Platform, Text, View, Dimensions} from 'react-native';
+import {
+  SafeAreaView,
+  Platform,
+  Text,
+  View,
+  Dimensions,
+  ScrollView,
+} from 'react-native';
 import {Header, Button, Icon} from 'native-base';
 
 export default ({navigation, children, title}) => {
@@ -11,11 +18,13 @@ export default ({navigation, children, title}) => {
       {title ? (
         <Header
           style={{
-            height: Platform.OS === 'android' ? 70 : 80,
+            height: 80,
+            borderBottomColor: 'white',
             backgroundColor: '#31d0cf',
             justifyContent: 'space-between',
             alignItems: 'center',
             flexDirection: 'row',
+            paddingTop: Platform.OS === 'android' ? 30 : 20,
           }}>
           <View
             style={{
@@ -49,7 +58,7 @@ export default ({navigation, children, title}) => {
       )}
       <View
         style={{
-          height: Dimensions.get('window').height - 100,
+          height: Dimensions.get('window').height - 80,
           position: 'relative',
         }}>
         {children}
