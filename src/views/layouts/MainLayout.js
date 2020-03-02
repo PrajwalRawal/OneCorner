@@ -31,7 +31,7 @@ export default ({navigation, children, title, scrollview}) => {
       ) : (
         <Header
           style={{
-            height: 80,
+            height: 100,
             borderBottomColor: 'white',
             backgroundColor: '#31d0cf',
             justifyContent: 'flex-start',
@@ -54,14 +54,14 @@ export default ({navigation, children, title, scrollview}) => {
       {scrollview && !title ? (
         <ScrollView
           style={{
-            height: Dimensions.get('window').height - 100,
+            height: Dimensions.get('screen').height - 100,
           }}>
           {children}
         </ScrollView>
       ) : (
         <View
           style={{
-            height: Dimensions.get('window').height - 80,
+            height: Dimensions.get('screen').height - 100,
             position: 'relative',
           }}>
           {children}

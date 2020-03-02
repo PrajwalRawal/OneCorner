@@ -30,6 +30,7 @@ const DetailView = ({navigation}) => {
 
   const ReviewData = [
     {
+      id: 1,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -39,6 +40,7 @@ const DetailView = ({navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 2,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -48,6 +50,7 @@ const DetailView = ({navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 3,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -57,6 +60,7 @@ const DetailView = ({navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 4,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -66,6 +70,7 @@ const DetailView = ({navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 5,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -342,6 +347,7 @@ const DetailView = ({navigation}) => {
             <View
               style={{
                 margin: 20,
+                paddingBottom: 50,
               }}>
               <Text
                 style={{
@@ -470,7 +476,7 @@ const DetailView = ({navigation}) => {
             <></>
           )}
           {showReviews ? (
-            <View style={{margin: 20}}>
+            <View style={{margin: 20, paddingBottom: 50}}>
               <Text
                 style={{
                   fontSize: 20,
@@ -722,7 +728,7 @@ const DetailView = ({navigation}) => {
                   data={ReviewData}
                   style={{marginLeft: -15, marginRight: -15}}
                   showsVerticalScrollIndicator={false}
-                  keyExtractor={item => item}
+                  keyExtractor={item => item.id.toString()}
                   renderItem={({item}) => {
                     return (
                       <TouchableOpacity
@@ -798,7 +804,7 @@ const DetailView = ({navigation}) => {
             <></>
           )}
           {showPhotos ? (
-            <View style={{margin: 20}}>
+            <View style={{margin: 20, paddingBottom: 50}}>
               <Text
                 style={{
                   fontSize: 20,
@@ -837,7 +843,7 @@ const DetailView = ({navigation}) => {
             <></>
           )}
           {showSpecial ? (
-            <View style={{margin: 20}}>
+            <View style={{margin: 20, paddingBottom: 100}}>
               <Text
                 style={{
                   fontSize: 20,
@@ -856,10 +862,10 @@ const DetailView = ({navigation}) => {
       </ScrollView>
       <View
         style={{
-          height: 100,
+          height: 150,
           position: 'absolute',
           left: 0,
-          bottom: -15,
+          bottom: 0,
           alignItems: 'center',
           width,
           justifyContent: 'center',
@@ -885,6 +891,7 @@ const DetailView = ({navigation}) => {
 const DisplayModal = ({display, setDisplay, navigation}) => {
   const ReviewData = [
     {
+      id: 1,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -894,6 +901,7 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 2,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -903,6 +911,7 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 3,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -912,6 +921,7 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 4,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -921,6 +931,7 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
         'Great night, great service food and drinks, definitely be back again.',
     },
     {
+      id: 5,
       initials: 'A',
       name: 'Alex C',
       time: '2 months',
@@ -1074,7 +1085,7 @@ const DisplayModal = ({display, setDisplay, navigation}) => {
             <FlatList
               data={ReviewData}
               showsVerticalScrollIndicator={false}
-              keyExtractor={item => item}
+              keyExtractor={item => item.id.toString()}
               renderItem={({item}) => {
                 return (
                   <TouchableOpacity

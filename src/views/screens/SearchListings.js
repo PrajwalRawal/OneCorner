@@ -113,7 +113,7 @@ export default ({navigation}) => {
         />
         <FlatList
           data={SearchCardData}
-          style={{marginLeft: -10, marginRight: -10}}
+          style={{marginLeft: -10, marginRight: -10, paddingBottom: 60}}
           showsHorizontalScrollIndicator={false}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => {
@@ -207,37 +207,6 @@ export default ({navigation}) => {
           }}
         />
       </ScrollView>
-      <View
-        style={{
-          position: 'absolute',
-          left: 0,
-          bottom: 20,
-          alignItems: 'center',
-          width,
-          justifyContent: 'center',
-        }}>
-        <TouchableOpacity
-          style={{
-            flexDirection: 'row',
-            paddingLeft: 10,
-            paddingRight: 10,
-            backgroundColor: '#31d0cf',
-            borderRadius: 10,
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          activeOpacity={0.9}>
-          <IconM
-            name="map-outline"
-            size={30}
-            color="white"
-            style={{paddingRight: 10}}
-          />
-          <Text style={{fontSize: 16, fontWeight: 'bold', color: 'white'}}>
-            See Map
-          </Text>
-        </TouchableOpacity>
-      </View>
     </SearchLayout>
   );
 };

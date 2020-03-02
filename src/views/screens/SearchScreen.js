@@ -9,6 +9,7 @@ import {
   SectionList,
   Image,
   StatusBar,
+  Platform,
 } from 'react-native';
 import IconA from 'react-native-vector-icons/AntDesign';
 import {Button, Icon} from 'native-base';
@@ -73,7 +74,8 @@ const LocationSections = [
 ];
 
 export default ({navigation}) => {
-  const [text, setText] = useState('London');
+  const [location, setLocation] = useState('London');
+  const [cuisine, setCuisine] = useState('');
 
   const [showCuisine, setShowCuisine] = useState(true);
   const [showLocation, setShowLocation] = useState(false);
@@ -94,7 +96,11 @@ export default ({navigation}) => {
         marginTop: Platform.OS === 'android' ? 0 : -50,
       }}>
       <View style={styles.page}>
-        <View style={{backgroundColor: '#31d0cf'}}>
+        <View
+          style={{
+            backgroundColor: '#31d0cf',
+            paddingTop: Platform.OS === 'ios' ? 30 : 0,
+          }}>
           <View
             style={{
               marginLeft: 20,
@@ -137,21 +143,21 @@ export default ({navigation}) => {
                   Where?
                 </Text>
                 <TextInput
-                  onFocus={() => handleLocation()}
-                  onChangeText={data => setText(data)}
-                  value={text}
-                  selectionColor="#6373db"
+                  onChangeText={data => setLocation(data)}
+                  value={location}
+                  autoCompleteType="off"
+                  autoCapitalize="none"
+                  returnKeyType="search"
                   clearTextOnFocus={true}
                   onSubmitEditing={() =>
                     navigation.navigate('Search', {
                       screen: 'SearchListings',
                     })
                   }
+                  onFocus={() => handleLocation()}
                   style={{
                     fontSize: 16,
                     width: 320,
-                    borderBottomWidth: showLocation ? 1 : 0,
-                    borderBottomColor: '#bbbcbf',
                   }}
                 />
               </View>
@@ -175,19 +181,21 @@ export default ({navigation}) => {
                   What're you looking for?
                 </Text>
                 <TextInput
-                  onFocus={() => handleCuisine()}
+                  onChangeText={data => setCuisine(data)}
+                  value={cuisine}
+                  autoCompleteType="off"
+                  autoCapitalize="none"
+                  returnKeyType="search"
+                  autoFocus={true}
                   onSubmitEditing={() =>
                     navigation.navigate('Search', {
                       screen: 'SearchListings',
                     })
                   }
-                  autoFocus={true}
-                  selectionColor="#6373db"
+                  onFocus={() => handleCuisine()}
                   style={{
                     fontSize: 16,
                     width: 320,
-                    borderBottomWidth: 1,
-                    borderBottomColor: '#bbbcbf',
                   }}
                 />
               </View>

@@ -75,7 +75,7 @@ export default ({navigation}) => {
 
   return (
     <MainLayout navigation={navigation} scrollview>
-      <View style={{backgroundColor: 'white'}}>
+      <View style={{backgroundColor: 'white', paddingBottom: 30}}>
         <View
           style={{
             padding: 15,
