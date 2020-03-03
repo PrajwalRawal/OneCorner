@@ -203,7 +203,7 @@ const DetailView = ({navigation}) => {
           source={require('../../assets/cardImage.png')}
           style={{
             width: Dimensions.get('screen').width,
-            height: 270,
+            height: 250,
             resizeMode: 'cover',
             backgroundColor: 'white',
           }}
@@ -354,7 +354,7 @@ const DetailView = ({navigation}) => {
                   fontSize: 20,
                   fontWeight: 'bold',
                   color: '#555',
-                  marginBottom: 15,
+                  marginBottom: 10,
                 }}>
                 About Chicken Station
               </Text>
@@ -419,13 +419,13 @@ const DetailView = ({navigation}) => {
               />
               <View
                 style={{
-                  marginTop: 20,
+                  marginTop: 10,
                 }}>
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    marginBottom: 20,
+                    marginBottom: 10,
                   }}>
                   <Icon name="clock-outline" size={25} color="#555" />
                   <Text
@@ -440,12 +440,12 @@ const DetailView = ({navigation}) => {
                 </View>
                 <Table height={180} columns={column1} dataSource={dataSource} />
               </View>
-              <View style={{marginTop: 20}}>
+              <View style={{marginTop: 10, marginBottom: 20}}>
                 <View
                   style={{
                     flexDirection: 'row',
                     alignItems: 'center',
-                    marginBottom: 20,
+                    marginBottom: 10,
                   }}>
                   <Icon name="map-marker-radius" size={25} color="#555" />
                   <Text
@@ -461,8 +461,8 @@ const DetailView = ({navigation}) => {
                 <View
                   style={{
                     borderWidth: 1,
-                    paddingBottom: 30,
-                    paddingTop: 30,
+                    paddingBottom: 15,
+                    paddingTop: 15,
                     borderColor: '#eaeaea',
                     alignItems: 'center',
                   }}>
@@ -560,6 +560,7 @@ const DetailView = ({navigation}) => {
                       backgroundBarStyle={{
                         width: 150,
                         height: 18,
+                        paddingBottom: 50,
                         borderColor: 'black',
                         borderWidth: 1,
                         marginBottom: 10,
@@ -726,7 +727,7 @@ const DetailView = ({navigation}) => {
                 </View>
                 <FlatList
                   data={ReviewData}
-                  style={{marginLeft: -15, marginRight: -15}}
+                  style={{marginLeft: -15, marginRight: -15, marginBottom: 30}}
                   showsVerticalScrollIndicator={false}
                   keyExtractor={item => item.id.toString()}
                   renderItem={({item}) => {
@@ -814,10 +815,9 @@ const DetailView = ({navigation}) => {
                 }}>
                 Photos
               </Text>
-              <View style={{backgroundColor: 'white'}}>
+              <View style={{backgroundColor: 'white', marginBottom: 30}}>
                 <View
                   style={{
-                    // flex: 1,
                     flexDirection: 'row',
                     flexWrap: 'wrap',
                     justifyContent: 'space-between',
@@ -843,7 +843,7 @@ const DetailView = ({navigation}) => {
             <></>
           )}
           {showSpecial ? (
-            <View style={{margin: 20, paddingBottom: 100}}>
+            <View style={{margin: 20, paddingBottom: 50}}>
               <Text
                 style={{
                   fontSize: 20,
@@ -853,7 +853,9 @@ const DetailView = ({navigation}) => {
                 }}>
                 Specials
               </Text>
-              <Table height={180} columns={column2} dataSource={Specials} />
+              <View style={{marginBottom: 30}}>
+                <Table height={180} columns={column2} dataSource={Specials} />
+              </View>
             </View>
           ) : (
             <></>
@@ -865,22 +867,25 @@ const DetailView = ({navigation}) => {
           height: 150,
           position: 'absolute',
           left: 0,
-          bottom: 0,
+          bottom: Platform.OS === 'android' ? 0 : -10,
           alignItems: 'center',
           width,
           justifyContent: 'center',
         }}>
         <TouchableOpacity
           style={{
-            padding: 10,
-            backgroundColor: '#31d0cf',
-            borderRadius: 10,
-            alignItems: 'center',
+            width: Dimensions.get('screen').width - 60,
+            height: 40,
             justifyContent: 'center',
+            alignItems: 'center',
+            borderRadius: 5,
+            padding: 5,
+            marginTop: 15,
+            backgroundColor: '#31d0cf',
           }}
           activeOpacity={0.9}>
-          <Text style={{fontSize: 16, fontWeight: 'bold', color: 'white'}}>
-            Reserve Now
+          <Text style={{fontSize: 18, fontWeight: 'bold', color: 'white'}}>
+            RESERVE NOW
           </Text>
         </TouchableOpacity>
       </View>

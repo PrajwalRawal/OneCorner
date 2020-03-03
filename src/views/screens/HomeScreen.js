@@ -120,18 +120,18 @@ export default ({navigation}) => {
                 <View
                   style={{
                     alignItems: 'center',
-                    marginRight: 30,
+                    marginRight: 25,
                   }}>
                   <TouchableOpacity
                     style={{
                       backgroundColor: '#dff5f4',
-                      borderRadius: 80,
-                      width: 60,
-                      height: 60,
+                      borderRadius: 65,
+                      width: 55, // flex: 1,
+                      height: 55,
                       alignItems: 'center',
                       justifyContent: 'center',
                     }}>
-                    <Icon name={item.icon} color="#31d0cf" size={40} />
+                    <Icon name={item.icon} color="#31d0cf" size={35} />
                   </TouchableOpacity>
                   <Text
                     style={{
@@ -479,23 +479,23 @@ export default ({navigation}) => {
 const styles = StyleSheet.create({
   featuredImageWrapper: {
     position: 'relative',
-    height: 150,
-    width: 350,
+    height: 200,
+    width: 300,
   },
   featuredThumbnail: {
-    height: 150,
-    width: 350,
+    height: 200,
+    width: 300,
     resizeMode: 'cover',
     borderRadius: 5,
   },
   trendingImageWrapper: {
     position: 'relative',
     height: 250,
-    width: 350,
+    width: 300,
   },
   trendingThumbnail: {
     height: 250,
-    width: 350,
+    width: 300,
     resizeMode: 'cover',
     borderRadius: 5,
   },
