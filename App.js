@@ -107,7 +107,7 @@ let routes = [
 
 function CustomDrawerContent({...rest}) {
   return (
-    <DrawerContentScrollView {...rest}>
+    <DrawerContentScrollView canCancelContentTouches={true} {...rest}>
       <View
         style={{
           margin: 20,

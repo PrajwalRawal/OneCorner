@@ -203,7 +203,7 @@ const DetailView = ({navigation}) => {
           source={require('../../assets/cardImage.png')}
           style={{
             width: Dimensions.get('screen').width,
-            height: 250,
+            height: Dimensions.get('screen').height / 3,
             resizeMode: 'cover',
             backgroundColor: 'white',
           }}
@@ -560,7 +560,6 @@ const DetailView = ({navigation}) => {
                       backgroundBarStyle={{
                         width: 150,
                         height: 18,
-                        paddingBottom: 50,
                         borderColor: 'black',
                         borderWidth: 1,
                         marginBottom: 10,

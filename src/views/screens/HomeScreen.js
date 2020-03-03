@@ -120,7 +120,7 @@ export default ({navigation}) => {
                 <View
                   style={{
                     alignItems: 'center',
-                    marginRight: 25,
+                    marginRight: 30,
                   }}>
                   <TouchableOpacity
                     style={{
